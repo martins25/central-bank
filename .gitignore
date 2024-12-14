@@ -1,0 +1,17 @@
+# Ignorar archivos y carpetas específicas de Eclipse
+.classpath
+.project
+.settings/
+.mvn/
+
+# Ignorar carpetas generadas por Maven
+target/
+
+# Ignorar archivos de sistema
+.DS_Store
+Thumbs.db
+
+# Ignorar configuraciones de IDE
+.idea/
+*.iml
+.vscode/
