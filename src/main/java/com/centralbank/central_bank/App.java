@@ -80,7 +80,9 @@ public class App extends JFrame {
 		JButton jb_continuar = new JButton("Continuar");
 		jb_continuar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		jb_continuar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent e) {			
+				
+				
 			}
 		});
 		jb_continuar.setOpaque(true);
@@ -91,9 +93,9 @@ public class App extends JFrame {
 		contentPane.add(jb_continuar);
 		
 		JButton jb_salir = new JButton("Salir");
-		jb_salir.addMouseListener(new MouseAdapter() {
+		jb_salir.addActionListener(new ActionListener() {
 			@Override
-			public void mouseClicked(MouseEvent e) {
+			public void actionPerformed(ActionEvent e) {
 				System.exit(0);
 				
 			}
