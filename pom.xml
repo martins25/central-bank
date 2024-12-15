@@ -8,7 +8,6 @@
   <version>0.0.1-SNAPSHOT</version>
 
   <name>central-bank</name>
-  <!-- FIXME change it to the project's website -->
   <url>http://www.example.com</url>
 
   <properties>
@@ -18,6 +17,7 @@
 
   <dependencyManagement>
     <dependencies>
+      <!-- JUnit BOM to manage JUnit dependencies -->
       <dependency>
         <groupId>org.junit</groupId>
         <artifactId>junit-bom</artifactId>
@@ -29,65 +29,82 @@
   </dependencyManagement>
 
   <dependencies>
+    <!-- JUnit Jupiter API (for testing) -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <scope>test</scope>
     </dependency>
-    <!-- Optionally: parameterized tests support -->
+
+    <!-- JUnit Jupiter Params (for parameterized tests) -->
     <dependency>
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-params</artifactId>
       <scope>test</scope>
     </dependency>
 
-     <!-- JDBC connector java-mysql -->
+    <!-- JDBC connector for MySQL -->
     <dependency>
       <groupId>mysql</groupId>
       <artifactId>mysql-connector-java</artifactId>
       <version>8.0.32</version>
     </dependency>
 
+    <!-- Swing is part of the JDK, no need to include as a dependency -->
   </dependencies>
 
   <build>
-    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+    <pluginManagement>
       <plugins>
-        <!-- clean lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <!-- Maven Clean Plugin -->
         <plugin>
           <artifactId>maven-clean-plugin</artifactId>
           <version>3.4.0</version>
         </plugin>
-        <!-- default lifecycle, jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
+        <!-- Maven Resources Plugin -->
         <plugin>
           <artifactId>maven-resources-plugin</artifactId>
           <version>3.3.1</version>
         </plugin>
+
+        <!-- Maven Compiler Plugin -->
         <plugin>
           <artifactId>maven-compiler-plugin</artifactId>
           <version>3.13.0</version>
         </plugin>
+
+        <!-- Maven Surefire Plugin (for running tests) -->
         <plugin>
           <artifactId>maven-surefire-plugin</artifactId>
           <version>3.3.0</version>
         </plugin>
+
+        <!-- Maven Jar Plugin -->
         <plugin>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.4.2</version>
         </plugin>
+
+        <!-- Maven Install Plugin -->
         <plugin>
           <artifactId>maven-install-plugin</artifactId>
           <version>3.1.2</version>
         </plugin>
+
+        <!-- Maven Deploy Plugin -->
         <plugin>
           <artifactId>maven-deploy-plugin</artifactId>
           <version>3.1.2</version>
         </plugin>
-        <!-- site lifecycle, see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+
+        <!-- Maven Site Plugin -->
         <plugin>
           <artifactId>maven-site-plugin</artifactId>
           <version>3.12.1</version>
         </plugin>
+
+        <!-- Maven Project Info Reports Plugin -->
         <plugin>
           <artifactId>maven-project-info-reports-plugin</artifactId>
           <version>3.6.1</version>
