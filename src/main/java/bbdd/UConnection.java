@@ -8,12 +8,14 @@ public class UConnection {
 	private static Connection con = null;
 	
 	public static Connection getConnection() {
-		
+			
 		try {
 			if(con==null) {
 				Runtime.getRuntime().addShutdownHook(new MiShutdownHook());
 				
-				ResourceBundle rb 	= ResourceBundle.getBundle("jdbc");
+				String ruta_properities = System.getProperty("user.home")+"\\CentralBank";
+				
+				ResourceBundle rb 	= ResourceBundle.getBundle(ruta_properities+"jdbc");
 				String driver 		= rb.getString("driver");
 				String url 			= rb.getString("url");
 				String pwd 			= rb.getString("pwd");

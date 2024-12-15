@@ -7,6 +7,7 @@ import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 
 import bbdd.Config;
+import bbdd.UConnection;
 
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
@@ -24,7 +25,7 @@ import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import javax.swing.JCheckBox;
 
-public class App extends JFrame implements ActionListener{
+public class LoginFrame extends JFrame implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -38,28 +39,13 @@ public class App extends JFrame implements ActionListener{
 	private JButton jb_salir;
 	private JCheckBox checkBox_recuerdame;
 	
-	
-
-	/**
-	 * Launch the application.
-	 */
-	public static void main(String[] args) {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					App frame = new App();
-					frame.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
 
 	/**
 	 * Create the frame.
 	 */
-	public App(){
+	public LoginFrame(){
+		
+		
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(""));
 		setTitle("CentralBank");
