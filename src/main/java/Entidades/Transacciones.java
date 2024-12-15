@@ -6,11 +6,12 @@ public class Transacciones {
 
 	//Creamos los atributos de la clase
 	private int id_transaccion;
-	private int id_cuenta;
+	private int id_cuentaOrigen;
+	private int id_cuentaDestino;
 	private String tipo_transaccion;
-	private Double cantidad;
+	private float cantidad;
 	private Date fecha;
-	private String Descripcion;
+	private String descripcion;
 	
 	
 	//Creamos los constructores
@@ -18,15 +19,16 @@ public class Transacciones {
 		
 	}
 	
-	public Transacciones(int id_transaccion, int id_cuenta, String tipo_transaccion, Double cantidad, Date fecha,
+	public Transacciones(int id_transaccion, int id_cuentaOrigen,int id_cuentaDestino, String tipo_transaccion, float cantidad, Date fecha,
 			String descripcion) {
 		super();
 		this.id_transaccion = id_transaccion;
-		this.id_cuenta = id_cuenta;
+		this.id_cuentaOrigen = id_cuentaOrigen;
+		this.id_cuentaDestino = id_cuentaDestino;
 		this.tipo_transaccion = tipo_transaccion;
 		this.cantidad = cantidad;
 		this.fecha = fecha;
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	
@@ -35,12 +37,20 @@ public class Transacciones {
 		return id_transaccion;
 	}
 
-	public int getId_cuenta() {
-		return id_cuenta;
+	public int getId_cuentaOrigen() {
+		return id_cuentaOrigen;
 	}
 
-	public void setId_cuenta(int id_cuenta) {
-		this.id_cuenta = id_cuenta;
+	public void setId_cuentaOrgien(int id_cuentaOrigen) {
+		this.id_cuentaOrigen = id_cuentaOrigen;
+	}
+
+	public int getId_cuentaDestino() {
+		return id_cuentaDestino;
+	}
+	
+	public void setId_cuentaDestino(int id_cuentaDestino) {
+		this.id_cuentaDestino = id_cuentaDestino;
 	}
 
 	public String getTipo_transaccion() {
@@ -51,11 +61,11 @@ public class Transacciones {
 		this.tipo_transaccion = tipo_transaccion;
 	}
 
-	public Double getCantidad() {
+	public float getCantidad() {
 		return cantidad;
 	}
 
-	public void setCantidad(Double cantidad) {
+	public void setCantidad(float cantidad) {
 		this.cantidad = cantidad;
 	}
 
@@ -68,11 +78,11 @@ public class Transacciones {
 	}
 
 	public String getDescripcion() {
-		return Descripcion;
+		return descripcion;
 	}
 
 	public void setDescripcion(String descripcion) {
-		Descripcion = descripcion;
+		this.descripcion = descripcion;
 	}
 
 	
@@ -80,8 +90,10 @@ public class Transacciones {
 	//Sobreescribimos el metodo toString
 	@Override
 	public String toString() {
-		return "Transacciones [id_transaccion=" + id_transaccion + ", id_cuenta=" + id_cuenta + ", tipo_transaccion="
-				+ tipo_transaccion + ", cantidad=" + cantidad + ", fecha=" + fecha + ", Descripcion=" + Descripcion
-				+ "]";
-	}	
+		return "Transacciones [id_transaccion=" + id_transaccion + ", id_cuentaOrigen=" + id_cuentaOrigen
+				+ ", id_cuentaDestino=" + id_cuentaDestino + ", tipo_transaccion=" + tipo_transaccion + ", cantidad="
+				+ cantidad + ", fecha=" + fecha + ", descripcion=" + descripcion + "]";
+	}
+
+	
 }

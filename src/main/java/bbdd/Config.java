@@ -185,32 +185,32 @@ public class Config {
 		
 		    
 		  //Creamos las tablas
-		    String usuarios = "CREATE TABLE IF NOT EXISTS Usuarios ( id_usuario INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(100) NOT NULL, apellido VARCHAR(100) NOT NULL, correo_electronico VARCHAR(150) UNIQUE NOT NULL, contrasena VARCHAR(255) NOT NULL, fecha_registro DATE);";
+		    String usuarios = "CREATE TABLE IF NOT EXISTS Usuarios ( id_usuario INT AUTO_INCREMENT PRIMARY KEY, nombre VARCHAR(100) NOT NULL, apellido VARCHAR(100) NOT NULL, correo_electronico VARCHAR(150) UNIQUE NOT NULL, contrasena VARCHAR(255) NOT NULL, fecha_registro DATE, admin BOOLEAN);";
 		    ps = con.prepareStatement(usuarios);
 		    ps.executeUpdate();
 		    ps.close();
 		    
-		    String cuentas = "CREATE TABLE IF NOT EXISTS Cuentas ( id_cuenta INT AUTO_INCREMENT PRIMARY KEY, id_usuario INT NOT NULL, numero_cuenta VARCHAR(20) UNIQUE NOT NULL, tipo_cuenta ENUM('ahorros', 'corriente') NOT NULL, saldo DECIMAL(15, 2) DEFAULT 0.00, fecha_creacion DATE, FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE );";
+		    String cuentas = "CREATE TABLE IF NOT EXISTS Cuentas ( id_cuenta INT AUTO_INCREMENT PRIMARY KEY, id_usuario INT NOT NULL, numero_cuenta VARCHAR(20) UNIQUE NOT NULL, tipo_cuenta VARCHAR(100) NOT NULL, saldo DECIMAL(15, 2) DEFAULT 0.00, fecha_creacion DATE, FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE, activa BOOLEAN);";
 		    ps = con.prepareStatement(cuentas);
 		    ps.executeUpdate();
 		    ps.close();
 
-		    String tarjetas = "CREATE TABLE IF NOT EXISTS  Tarjetas ( id_tarjeta INT AUTO_INCREMENT PRIMARY KEY, id_cuenta INT NOT NULL, numero_tarjeta VARCHAR(16) UNIQUE NOT NULL, tipo_tarjeta ENUM('debito', 'credito') NOT NULL, fecha_expiracion DATE NOT NULL, codigo_seguridad VARCHAR(4) NOT NULL, limite_credito DECIMAL(15, 2) DEFAULT NULL, FOREIGN KEY (id_cuenta) REFERENCES Cuentas(id_cuenta) ON DELETE CASCADE );";
+		    String tarjetas = "CREATE TABLE IF NOT EXISTS  Tarjetas ( id_tarjeta INT AUTO_INCREMENT PRIMARY KEY, id_cuenta INT NOT NULL, numero_tarjeta VARCHAR(16) UNIQUE NOT NULL, tipo_tarjeta VARCHAR(100) NOT NULL, fecha_expiracion DATE NOT NULL, codigo_seguridad VARCHAR(4) NOT NULL, limite_credito DECIMAL(15, 2) DEFAULT NULL, FOREIGN KEY (id_cuenta) REFERENCES Cuentas(id_cuenta) ON DELETE CASCADE, activada BOOLEAN );";
 		    ps = con.prepareStatement(tarjetas);
 		    ps.executeUpdate();
 		    ps.close();
 
-		    String transacciones = "CREATE TABLE IF NOT EXISTS  Transacciones ( id_transaccion INT AUTO_INCREMENT PRIMARY KEY, id_cuenta_origen INT NOT NULL, id_cuenta_destino INT, monto DECIMAL(15, 2) NOT NULL, tipo_transaccion ENUM('deposito', 'retiro', 'transferencia') NOT NULL, fecha_transaccion DATE, FOREIGN KEY (id_cuenta_origen) REFERENCES Cuentas(id_cuenta) ON DELETE CASCADE, FOREIGN KEY (id_cuenta_destino) REFERENCES Cuentas(id_cuenta) );";
+		    String transacciones = "CREATE TABLE IF NOT EXISTS  Transacciones ( id_transaccion INT AUTO_INCREMENT PRIMARY KEY, id_cuenta_origen INT NOT NULL, id_cuenta_destino INT, cantidad DECIMAL(15, 2) NOT NULL, Descripcion VARCHAR(100) NOT NULL, fecha_transaccion DATE, FOREIGN KEY (id_cuenta_origen) REFERENCES Cuentas(id_cuenta) ON DELETE CASCADE, FOREIGN KEY (id_cuenta_destino) REFERENCES Cuentas(id_cuenta) );";
 		    ps = con.prepareStatement(transacciones);
 		    ps.executeUpdate();
 		    ps.close(); 
 
-		    String prestamos = "CREATE TABLE IF NOT EXISTS  Prestamos ( id_prestamo INT AUTO_INCREMENT PRIMARY KEY, id_usuario INT NOT NULL, monto DECIMAL(15, 2) NOT NULL, interes DECIMAL(5, 2) NOT NULL, plazo_meses INT NOT NULL, fecha_inicio DATE, saldo_pendiente DECIMAL(15, 2) DEFAULT NULL, FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE );";
+		    String prestamos = "CREATE TABLE IF NOT EXISTS  Prestamos ( id_prestamo INT AUTO_INCREMENT PRIMARY KEY, id_usuario INT NOT NULL, cantidad DECIMAL(15, 2) NOT NULL, interes DECIMAL(5, 2) NOT NULL, plazo_meses INT NOT NULL, fecha_inicio DATE, saldo_pendiente DECIMAL(15, 2) DEFAULT NULL, FOREIGN KEY (id_usuario) REFERENCES Usuarios(id_usuario) ON DELETE CASCADE );";
 		    ps = con.prepareStatement(prestamos);
 		    ps.executeUpdate();
 		    ps.close(); 
 		    
-		    String pagos = "CREATE TABLE IF NOT EXISTS Pagos ( id_pago INT AUTO_INCREMENT PRIMARY KEY, id_prestamo INT NOT NULL, monto_pagado DECIMAL(15, 2) NOT NULL, fecha_pago DATE, FOREIGN KEY (id_prestamo) REFERENCES Prestamos(id_prestamo) ON DELETE CASCADE );";
+		    String pagos = "CREATE TABLE IF NOT EXISTS Pagos ( id_pago INT AUTO_INCREMENT PRIMARY KEY, id_prestamo INT NOT NULL, cantidad_pagada DECIMAL(15, 2) NOT NULL, fecha_pago DATE, FOREIGN KEY (id_prestamo) REFERENCES Prestamos(id_prestamo) ON DELETE CASCADE );";
 		    ps = con.prepareStatement(pagos);
 		    ps.executeUpdate();
 		    ps.close(); 
