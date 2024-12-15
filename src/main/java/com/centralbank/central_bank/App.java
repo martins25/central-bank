@@ -5,6 +5,9 @@ import java.awt.EventQueue;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
+import bbdd.Conexion;
+
 import javax.swing.JLabel;
 import java.awt.FlowLayout;
 import javax.swing.JTextField;
@@ -81,8 +84,11 @@ public class App extends JFrame {
 		jb_continuar.setFont(new Font("Tahoma", Font.BOLD, 11));
 		jb_continuar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {			
-				
-				
+				Conexion.setUrl(jtf_direccion.getText());
+				Conexion.setUser(jtf_usuario.getText());
+				Conexion.setPassword(jtf_password.getText());
+				Conexion.instalacion();
+		
 			}
 		});
 		jb_continuar.setOpaque(true);
