@@ -12,7 +12,7 @@ import java.util.ArrayList;
 
 //Creamos la clase conexion que se encargara de conectarse al gestor de base de datos y creara la base de datos
 //Lo hacemos estatico dado que estos valores van a ser asi para toda la aplicacion
-public class Conexion {
+public class Config {
 	
  	//Nos dice la ruta absoluta del usuario que tiene la sesion iniciada
 	private static final String RUTA_USER = System.getProperty("user.home");
@@ -32,37 +32,37 @@ public class Conexion {
 	//Creamos las constantes de nuestros nombres de tablas y base de datos
 	private static final String NBASE_DATOS	= "centralbank";
 	private static final String BASE_DATOS	= NBASE_DATOS+"?useSSL=false&severTimezone=UTC";	
-		
 	
 	
+	//Creamos los archivos para despues comprobar si existen
+	private static  File directorio 			= new File(RUTA_PRINCIPAL);
+	private static File archivo_configuracion 	= new File(RUTA_PRINCIPAL+"\\"+CONFIG);
+			
 	
 	//Creamos los getters y setters
 	public static String getUrl() {
 		return url;
 	}
 	public static void setUrl(String host) {
-		Conexion.url = "jdbc:mysql://"+host+"/";
+		Config.url = "jdbc:mysql://"+host+"/";
 		
 	}
 	public static String getUser() {
 		return user;
 	}
 	public static void setUser(String user) {
-		Conexion.user = user;
+		Config.user = user;
 	}
 	public static String getPassword() {
 		return password;
 	}
 	public static void setPassword(String password) {
-		Conexion.password = password;
+		Config.password = password;
 	}
 
 
 	//Metodo que se encarga de comprobar si ya esta echa la instalacion o hay que hacerla
 	public static void instalacion() {
-		//Creamos los archivos para despues comprobar si existen
-		File directorio 			= new File(RUTA_PRINCIPAL);
-		File archivo_configuracion 	= new File(RUTA_PRINCIPAL+"\\"+CONFIG);
 		
 		
 		boolean bandera_creacion = true;
@@ -96,7 +96,7 @@ public class Conexion {
 	 * nos da una configuracion por defecto @return no devuelve nada @param no necesita parametros
 	 * para ser invocado.
 	 */
-	private static void creaConfig(){
+	public static void creaConfig(){
 		//Creamos un objeto de PritnWriter para escribir la configuracion por defecto
 		PrintWriter fSalida = null;
 		try{
@@ -106,6 +106,11 @@ public class Conexion {
 		}catch (Exception e) {
 			System.err.println("Error Inesperado" + e.getMessage());
 		}
+	}
+	
+	//En caso de que el usuario no quiera guardar la sesion la borramos
+	public static void borraConfig() {
+		archivo_configuracion.deleteOnExit();
 	}
 	
 	
