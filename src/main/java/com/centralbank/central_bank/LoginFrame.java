@@ -44,9 +44,6 @@ public class LoginFrame extends JFrame implements ActionListener{
 	 * Create the frame.
 	 */
 	public LoginFrame(){
-		
-		
-		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(""));
 		setTitle("CentralBank");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -138,7 +135,12 @@ public class LoginFrame extends JFrame implements ActionListener{
 				Config.setUser(jtf_usuario.getText());
 				Config.setPassword(jtf_password.getText());
 				Config.instalacion();
-			
+				
+				//Cambiamos de Jframe
+				MainFrame siguiente = new MainFrame();
+	            siguiente.setVisible(true);
+	            
+	            			
 			}else if(boton == jb_salir) {
 				System.exit(0);
 			}

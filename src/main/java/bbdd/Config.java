@@ -31,7 +31,7 @@ public class Config {
 	
 	//Creamos las constantes de nuestros nombres de tablas y base de datos
 	private static final String NBASE_DATOS	= "centralbank";
-	private static final String BASE_DATOS	= NBASE_DATOS+"?useSSL=false&severTimezone=UTC";	
+	private static final String BASE_DATOS	= NBASE_DATOS+"?allowPublicKeyRetrieval=true&useSSL=false&severTimezone=UTC";	
 	
 	
 	//Creamos los archivos para despues comprobar si existen
