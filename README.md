@@ -37,7 +37,7 @@ Una aplicación bancaria de escritorio que permite a los administradores realiza
 
 1. Clona este repositorio en tu máquina local:
     ```bash
-    git clone https://github.com/tuusuario/AplicacionBancaria.git
+    git clone ttps://github.com/martins25/central-bank.git
     ```
 
 2. Abre el proyecto en tu IDE preferido.
